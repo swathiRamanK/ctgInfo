@@ -3,8 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Navbar, Nav, Modal } from 'react-bootstrap';
 
 function Header() {
-    
-  
+
 
     return (
         <div>
