@@ -15,6 +15,9 @@
 body,span,div,a,i{
   font-family: 'Roboto Condensed', sans-serif;
 }
+.margin15{
+  margin: 15px;
+}
 
 /* header styles*/
 
@@ -274,12 +277,47 @@ color: var(--icons-color);
  border: 1px solid var(--bg-color-3);
 }
 /*timesheet page*/
-.timesheet-page{
-  height: 800px;
+.timesheet-page,.demoTimesheet{
+  /* height: 1000px; */
 }
 
 .calender-section{
   width: 650px;
 }
-
-
+.demoTimesheet .dropdown{
+  display: inline-block;
+  margin: 6px 12px;
+}
+.demoTimesheet button{
+  background: #10375c;
+    border: #10375c;
+}
+.demoTimesheet .timesheet-table{
+      width: 75%;
+    margin: 6px 12px;
+}
+.table-header ul,.p-datatable-header{
+  padding: 0px !important;
+}
+.table-header li{
+  width: 192px;
+text-align: left;
+padding: 1rem 1rem;
+border: 1px solid #e9ecef;
+border-width: 0 0 1px 0;
+font-weight: 600;
+color: #495057;
+background: #f8f9fa;
+display: inline-block;
+-webkit-transition: -webkit-box-shadow 0.2s;
+transition: -webkit-box-shadow 0.2s;
+transition: box-shadow 0.2s;
+transition: box-shadow 0.2s, -webkit-box-shadow 0.2s;
+}
+.p-datatable-tbody tr:first-child{
+  pointer-events: none;
+}
+.p-datatable-tbody tr:first-child td{ 
+  background: #f8f9fa ;
+  font-weight: 600;
+}

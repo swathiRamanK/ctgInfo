@@ -16,6 +16,10 @@ const userSchema = new Schema({
      date:{
          type:Date,
          default:Date.now
+     },
+     timesheet:{
+         type:Array,
+         required:true
      }
  });
  module.exports = User = mongoose.model('Users',userSchema)

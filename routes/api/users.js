@@ -59,6 +59,7 @@ router.post("/login", (req, res) => {
     const password = req.body.password;
   // Find user by email
     User.findOne({ email }).then(user => {
+     
       // Check if user exists
       if (!user) {
         return res.status(404).json({ emailnotfound: "Email not found" });
@@ -82,16 +83,55 @@ router.post("/login", (req, res) => {
             (err, token) => {
               res.json({
                 success: true,
-                token: "Bearer " + token
+                token: "Bearer " + token,
+                name:user.name
               });
             }
           );
+
         } else {
           return res
             .status(400)
             .json({ passwordincorrect: "Password incorrect" });
         }
       });
+
+      
     });
   });
+  router.post("/submit", (req, res) => {
+    const email =req.body.email;
+    const selectedWeek = req.body.selectedWeek;
+
+    const data =req.body.data;
+    console.log('selectedWeek',selectedWeek,data)
+    User.findOne({ email }).then(user => {
+      console.log('user',user.timesheet);
+      // user.timesheet.array.forEach(element => {
+      //   element[[selectedWeek]] ? data :''
+      // });
+     user.timesheet.push( {[selectedWeek]:data});
+      
+      user.save();
+
+    });
+
+  });
+
+  router.post("/getWeekData",(req,res)=>{
+    const email =req.body.email;
+    const selectedWeek = req.body.selectedWeek;
+    let data = [];
+    console.log('useremail',email,selectedWeek);
+    User.findOne({ email }).then(user => {
+     
+      user.timesheet.forEach(element => {
+        if(element[selectedWeek]){
+          data = element[selectedWeek];
+        }
+      });
+       return res.status(200).json(data.length === 0 ? [] : data);
+
+    });
+  })
   module.exports = router;

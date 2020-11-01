@@ -3,7 +3,10 @@ import { NavLink } from "react-router-dom";
 import { Navbar, Nav, Modal } from 'react-bootstrap';
 
 function Header() {
-
+    
+   
+  
+    let name = localStorage.getItem("userName") ?  localStorage.getItem("userName") :'Log In/SignUp';
 
     return (
         <div>
@@ -37,7 +40,7 @@ function Header() {
                 <Navbar.Collapse className="justify-content-end">
                     <Nav>
                         <Nav.Link href="/timesheet">
-    Log In/SignUp<i className="fa fa-user"></i></Nav.Link>
+    {name}<i className="fa fa-user"></i></Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
