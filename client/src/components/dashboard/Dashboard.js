@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import { connect } from "react-redux";
-import { logoutUser,submit,weekData } from "../../actions/authActions";
+import { logoutUser, submit, weekData } from "../../actions/authActions";
 import { withRouter } from "react-router-dom";
 import moment from 'moment';
 import Moment from 'react-moment'; //bootstrap import
-import {Button,Dropdown,Table} from 'react-bootstrap'; //import './App.css';
-
-
+import { Button, Dropdown, Table } from 'react-bootstrap'; //import './App.css';
 import { Row } from 'primereact/row';
 // prime ng react table 
 import { DataTable } from 'primereact/datatable';
@@ -18,6 +15,7 @@ import { InputText } from 'primereact/inputtext';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
+import { Toast } from 'primereact/toast';
 
 
 
@@ -42,12 +40,17 @@ class Dashboard extends Component {
         November: 10,
         December: 11
       },
+      yearObj: {
+        2020: 20,
+        2021: 21,
+      },
       weekObj: [],
       tableObj: [],
       dayObj: [],
       startDate: "",
       endDate: "",
       optionItems: [],
+      optionItemsYear: [],
       value: '',
       // start : moment([2020, 8 - 1]).startOf('month'), 
       // end : moment([2020, 8 - 1]).endOf('month'), 
@@ -55,7 +58,8 @@ class Dashboard extends Component {
 
       products: [],
       header: [],
-      selectedWeek: ''
+      selectedWeek: '',
+      selectedYear: ''
 
 
     };
@@ -66,26 +70,38 @@ class Dashboard extends Component {
     this.state.optionItems = Object.keys(this.state.monthObj).map(item => < Dropdown.Item onSelect={
       () => this.onTargetSelect(this.state.monthObj[item])
     }
+
+
+
       eventKey={
         this.state.monthObj.item
       } > {
         item
-      } </Dropdown.Item>); 
-      console.log('this.props', this.props);
+      } </Dropdown.Item>);
+
+    this.state.optionItemsYear = Object.keys(this.state.yearObj).map(item => < Dropdown.Item onSelect={
+      () => this.onYearSelect(this.state.yearObj[item])
+    }
+      eventKey={
+        this.state.yearObj.item
+      } > {
+        item
+      } </Dropdown.Item>);
+    console.log('this.props', this.props);
   }
 
 
   componentWillReceiveProps(props) {
-    console.log('props',props);
+    console.log('props component will receive', props);
     let value = Object.values(props.auth.user.data);
     let updateRow = {
-      "Sunday": value[0],
-      "Monday": value[1],
-      "Tuesday": value[2],
-      "Wednesday": value[3],
-      "Thursday": value[4],
-      "Friday": value[5],
-      "Saturday": value[6],
+      "Sunday": value[0] ? value[0] : '0',
+      "Monday": value[1] ? value[1] : '0',
+      "Tuesday": value[2] ? value[2] : '0',
+      "Wednesday": value[3] ? value[3] : '0',
+      "Thursday": value[4] ? value[4] : '0',
+      "Friday": value[5] ? value[5] : '0',
+      "Saturday": value[6] ? value[6] : '0',
     };
     console.log('updateRow', updateRow)
     this.state.products[1] = updateRow
@@ -168,7 +184,12 @@ class Dashboard extends Component {
       products: days
     });
 
+    // this.onLoad();
     // console.log('days', days, this.state.dayObj);
+  }
+
+  onYearSelect = (e) => {
+    this.setState({ selectedYear: e })
   }
   handleSelect = (e) => {
     console.log(e);
@@ -197,10 +218,11 @@ class Dashboard extends Component {
     return <InputText type="text" value={props.rowData[field]} onChange={(e) => this.onEditorValueChange(productKey, props, e.target.value)} />;
   }
   codeEditor(productKey, props) {
-    console.log('code editor', productKey, props);
     return this.inputTextEditor(productKey, props, 'code');
   }
   onEditorValueChange(productKey, props, value) {
+    console.log('props11', props)
+    console.log()
     let updatedProducts = [...props.value];
     console.log('updatedProducts', updatedProducts, props);
     updatedProducts[props.rowIndex][props.field] = value;
@@ -209,31 +231,60 @@ class Dashboard extends Component {
   }
 
   onSubmit = e => {
-    const email = localStorage.getItem("userEmail");
-    const data = {};
-    Object.keys(this.state.products[0]).forEach(element => {
-      let date = this.state.products[0][element];
-      data[date] = this.state.products[1][element];
-    });
-    let userData = {
-      data: data,
-      email: email,
-      selectedWeek: this.state.selectedWeek
+
+    let count = 0;
+    console.log('submit', this.state.products[1])
+
+    if (this.state.products[1] === undefined) {
+      this.toast.show({ severity: 'error', summary: 'Error!', detail: 'Select Data to Submit' });
     }
+    else {
+      Object.keys(this.state.products[1]).forEach(e => {
+        if (Number(this.state.products[1][e]) !== 0 && Number(this.state.products[1][e]) !== 8) {
+          console.log("Number(this.state.products[1][e])", Number(this.state.products[1][e]))
+          count++;
+        }
+      })
 
-    const res = this.props.submit(userData);
+      if (count > 0) {
+        this.toast.show({ severity: 'error', summary: 'Error!', detail: 'Hours should be either 8 or 0' });
+      } else {
 
+        this.toast.show({ severity: 'success', summary: 'Success Message', detail: 'Timesheet Submitted for selected week' });
+        const email = localStorage.getItem("userEmail");
+        const data = {};
+        Object.keys(this.state.products[0]).forEach(element => {
+          let date = this.state.products[0][element];
+          data[date] = this.state.products[1][element];
+        });
+        let userData = {
+          data: data,
+          email: email,
+          selectedWeek: this.state.selectedWeek,
+          selectedYear: this.state.selectedYear
+        }
 
+        const res = this.props.submit(userData);
+      }
+    }
   }
   onLoad = e => {
-    const email = localStorage.getItem("userEmail");
 
-    let userData = {
-      email: email,
-      selectedWeek: this.state.selectedWeek
+    if (this.state.selectedWeek && this.state.selectedYear) {
+
+      const email = localStorage.getItem("userEmail");
+
+      let userData = {
+        email: email,
+        selectedWeek: this.state.selectedWeek,
+        selectedYear: this.state.selectedYear
+      }
+
+      this.props.weekData(userData);
+    } else {
+      this.toast.show({ severity: 'error', summary: 'Error!', detail: 'Select Data to Load' });
     }
 
-    this.props.weekData(userData);
 
 
   }
@@ -259,28 +310,33 @@ class Dashboard extends Component {
 
   render() {
 
-
     // const { user } = localStorage.getItem("userName");
     const name = localStorage.getItem("userName");
-
     const events = [{ title: "", date: '' }];
-
-   
-
 
     return (
       <div className="demoTimesheet" >
+
+        <Toast ref={(el) => this.toast = el} />
         <div className="timesheet-page margin15" >
 
           <h4>
-              {name}!
+            {name}!
               Here is your time sheet space
-            </h4>
-          <Button variant="primary" onClick={this.onLogoutClick}>Logout</Button>
+              <Button className="float-right" variant="primary" onClick={this.onLogoutClick}>Logout</Button>
+          </h4>
 
           {/* timesheet section */}
         </div>
 
+        <Dropdown className="margin15">
+          <Dropdown.Toggle variant="success"
+            id="select-year" > Select Year
+  </Dropdown.Toggle>
+          <Dropdown.Menu > {
+            this.state.optionItemsYear
+          } </Dropdown.Menu>
+        </Dropdown>
         <Dropdown className="margin15">
           <Dropdown.Toggle variant="success"
             id="select-month" > Select Month
@@ -319,7 +375,7 @@ class Dashboard extends Component {
 Dashboard.propTypes = {
   weekData: PropTypes.func.isRequired,
   submit: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired ,// TODO - made its as string from object
+  errors: PropTypes.object.isRequired,// TODO - made its as string from object
   logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
@@ -329,5 +385,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { logoutUser,weekData,submit }
+  { logoutUser, weekData, submit }
 )(Dashboard);

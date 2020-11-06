@@ -18,6 +18,17 @@ body,span,div,a,i{
 .margin15{
   margin: 15px;
 }
+button:hover,button:active,button:focus{
+  color: #fff!important;
+    background-color:var(--bg-color-2) !important;
+    border-color:var(--bg-color-2)!important;
+    border:none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+.float-right{
+  float: right;
+}
 
 /* header styles*/
 

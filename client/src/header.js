@@ -6,7 +6,8 @@ function Header() {
     
    
   
-    let name = localStorage.getItem("userName") ?  localStorage.getItem("userName") :'Log In/SignUp';
+    let name = 'Log In/SignUp';
+    // localStorage.getItem("userName") ?  localStorage.getItem("userName") :
 
     return (
         <div>
