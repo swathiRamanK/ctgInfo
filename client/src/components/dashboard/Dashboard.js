@@ -52,6 +52,7 @@ class Dashboard extends Component {
       optionItems: [],
       optionItemsYear: [],
       value: '',
+      selectedMonth:'',
       // start : moment([2020, 8 - 1]).startOf('month'), 
       // end : moment([2020, 8 - 1]).endOf('month'), 
       // nrofWeeks : moment.duration(end - start).weeks()
@@ -59,7 +60,9 @@ class Dashboard extends Component {
       products: [],
       header: [],
       selectedWeek: '',
-      selectedYear: ''
+      selectedYear: '',
+      selectedWeekStartDate:'',
+      userName:localStorage.getItem("userName")
 
 
     };
@@ -109,6 +112,7 @@ class Dashboard extends Component {
 
 
   onTargetSelect = function (item) {
+    this.state.selectedMonth = Object.keys(this.state.monthObj).find(key => this.state.monthObj[key] === item);
     this.state.weekObj = this.state.weekObj ? [] : '';
     let newDate = moment().year() + '-' + (item + 1) + '-01';
     let weeks = [];
@@ -129,7 +133,8 @@ class Dashboard extends Component {
     console.log('ll', week, this.state.columns, moment(week).week());
 
     this.setState({
-      selectedWeek: moment(week).week()
+      selectedWeek: moment(week).week(),
+      selectedWeekStartDate:week
     });
     let respose = [];
     let emptyRow = {
@@ -321,7 +326,7 @@ class Dashboard extends Component {
         <div className="timesheet-page margin15" >
 
           <h4>
-            {name}!
+            {this.state.userName}!
               Here is your time sheet space
               <Button className="float-right" variant="primary" onClick={this.onLogoutClick}>Logout</Button>
           </h4>
@@ -355,8 +360,14 @@ class Dashboard extends Component {
 
         <Button variant="primary" className="margin15" onClick={this.onLoad}>Load</Button>
         <Button variant="primary" className="margin15" onClick={this.onSubmit}>Submit</Button>
-        <span>Selected week - {this.state.selectedWeek}</span>
+        {/* <span>Selected week - {this.state.selectedWeek}</span> */}
 
+        <div className="margin6L12R">
+          <p >Selected Year - {this.state.selectedYear ? '20' + this.state.selectedYear : '' }</p>
+          <p>Selected Month - {this.state.selectedMonth}</p>
+        <p>Selected week - {this.state.selectedWeekStartDate}   {this.state.selectedWeek ? '-'+ this.state.selectedWeek +'/52' :''}</p>
+          
+        </div>
         <div className="card margin15">
           <DataTable value={this.state.products} editMode="cell" className="editable-cells-table " >
             <Column field="Sunday" header="Sunday"></Column>
@@ -381,7 +392,8 @@ Dashboard.propTypes = {
 };
 const mapStateToProps = state => ({
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
+  
 });
 export default connect(
   mapStateToProps,

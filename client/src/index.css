@@ -29,6 +29,9 @@ button:hover,button:active,button:focus{
 .float-right{
   float: right;
 }
+.margin6L12R{
+  margin: 6px 12px;
+}
 
 /* header styles*/
 
