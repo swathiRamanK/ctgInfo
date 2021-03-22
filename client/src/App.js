@@ -55,7 +55,7 @@ class App extends Component {
               <Route path="/Contact-Us" component={ContactUs} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
-              <Route exact path="/timesheet" component={Landing} />
+              {/* <Route exact path="/timesheet" component={Landing} /> */}
               <Route exact path="/demo" component={demoTimesheet} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
             </Switch>

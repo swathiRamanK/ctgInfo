@@ -2,7 +2,8 @@ import React from 'react';
 
 
 import { Image, CardDeck, Card } from 'react-bootstrap';
-import Herobanner from './hero-banner-2.jpg';
+// import Herobanner from './hero-banner-2.jpg';
+import Herobanner from './images/hero-banner-1.jpg';
 //import './App.css';
 
 
@@ -12,18 +13,20 @@ function Home() {
     <div className="Home">
 
       <Image src={Herobanner} fluid></Image>
+      <h5 className="heading image-text">CTG INFOTECH</h5>
+      <p className="image-text-subheading">  We work with just the DATA and nothing else!</p>
       <CardDeck className="homepage-aboutus-header">
         <Card >
           <Card.Body>
             <h5 className="heading">WHO WE ARE</h5>
-            <p className="caption">Some few captions about</p>
-            <p className="caption">what you do and work</p>
+            <p className="caption">“Data really powers everything that we do.”</p>
+            <p className="caption">– Jeff Weiner</p>
           </Card.Body>
         </Card>
         <Card>
           <Card.Body>
             <div className="content">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+              A group of The sole mission of CTG Info tech is----.We specialize in 
               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
               ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit

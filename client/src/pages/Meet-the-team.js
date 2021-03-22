@@ -9,7 +9,7 @@ import networkEngineer from '../images/networkEngineer.jpg'
 function MeetTheTeam(){
     return (
         <div className ="meet-the-team">
-             <h5 className="heading">MEET THE TEAM</h5>
+             <h3 className="heading">MEET THE TEAM</h3>
             <CardDeck>
                 <Card>
                     <Card.Img src={bigData}></Card.Img>
@@ -69,6 +69,7 @@ function MeetTheTeam(){
                     </Card.ImgOverlay>
                 </Card>
             </CardDeck>
+        
         </div>
     )
 }
