@@ -26,15 +26,8 @@ function Home() {
         <Card>
           <Card.Body>
             <div className="content">
-              A group of The sole mission of CTG Info tech is----.We specialize in 
-              sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-              ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-              in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-              occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-              ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-              in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+              Company To Grow Inc. (CTG Infotech, Inc.) is one of the major and successive providers of professional partner services related to computer Information Technology. The company contracts with many of the largest and leading companies in across the South Africa to offer consulting and migration services as a manage services partner. CTG began its journey in 2018 in Johannesburg, South Africa, offering a relatively new strategic and competitive service.
+              CTG Infotech is passionate about Data and Business agility. We see data and business intelligence as means to a business end. Our philosophy is to begin with business drivers and end with business outcomes. It just so happens that we leverage data, business intelligence technology, and industry knowledge to achieve that goal.
             </div>
           </Card.Body>
         </Card>

@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { Navbar, Nav, Modal } from 'react-bootstrap';
+import { Navbar, Nav, Modal,Image } from 'react-bootstrap';
+import Logo from './images/Logo.jpg';
+
 
 function Header() {
     
@@ -13,20 +15,20 @@ function Header() {
         <div>
            
             <Navbar expand="lg" className="navbar-2">
-                <Navbar.Brand href="/">Logo</Navbar.Brand>
+                <Navbar.Brand href="/"><Image className="logo-header" src={Logo}></Image></Navbar.Brand>
                 <Navbar.Toggle aria-controls="header-navbar-2" />
                 <Navbar.Collapse id="header-navbar-2" className="justify-content-center">
                     <Nav>
-                        <Nav.Link href="/">Home</Nav.Link>
-                        <Nav.Link href="/Meet-the-team">Meet The Team</Nav.Link>
-                        <Nav.Link href="/Services">Services</Nav.Link>
+                        <Nav.Link href="/">HOME</Nav.Link>
+                        <Nav.Link href="/Meet-the-team">MEET THE TEAM</Nav.Link>
+                        <Nav.Link href="/Services">SERVICES</Nav.Link>
                         {/* <Nav.Link href="/Services">Placeholder</Nav.Link>
                         <Nav.Link href="/Services">Placeholder</Nav.Link> */}
-                        <Nav.Link href="/Contact-Us">Contact Us</Nav.Link>
+                        <Nav.Link href="/Contact-Us">CONTACT US</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
              
-                <Navbar.Brand href="/" className="paddingL0 font-16"><i className="fa fa-envelope-o"><span>abc@ctginfotech.com</span></i></Navbar.Brand>
+                <Navbar.Brand href="/Contact-Us" className="paddingL0 font-16"><i className="fa fa-envelope-o"><span className="paddingL5">talents@ctginfotech.co.in</span></i></Navbar.Brand>
               
                 {/* <Navbar.Collapse className="justify-content-end">
                     <Nav>

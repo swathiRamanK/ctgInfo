@@ -44,8 +44,25 @@ button:hover,button:active,button:focus{
   color: #fff !important;
   background: #10375c !important;
 }
+.marginT5px{
+  margin-top: 5px;
+}
+.paddingR5{
+  padding-right: 5px;
+}
+.paddingL5{
+  padding-left: 5px;
+}
+.blue-color{
+  color: var(--header-footer);
+}
+.width-100{
+  width: 100%;
+}
 /* header styles*/
-
+.logo-header{
+  width: 125px;
+}
 .navbar-1{
   background: var(--header-footer);
 }
@@ -236,11 +253,14 @@ color: #10375c;
 }
 /*Contact US*/
 .contact-us{
-  height: 900px;
+  height: 600px;
 }
 .contact-us .heading{
-  color: var(--icons-color);
-  padding:15px 15px;
+  background-color: #10375c;
+    padding: 15px 15px;
+    text-align: center;
+    font-weight: 600;
+    color: #fff;
 }
 .contact-us .card-deck{
   width: 100%;
@@ -250,8 +270,8 @@ color: #10375c;
   border: none;
 }
 .contact-us img{
-  height: 450px;
-  width: 600px;
+  height: 250px;
+    width: 250px;
 }
 .contact-us-submit{
   border-radius: 0px !important;

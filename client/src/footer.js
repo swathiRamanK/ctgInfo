@@ -9,7 +9,7 @@ function Footer() {
 
         <div className="footer">
            
-            <Button Variant="primary" type="submit" className="ctg-btn-primary contact-us-submit">Sign In</Button>
+            <Button Variant="primary" type="submit" href="/Contact-Us"className="ctg-btn-primary contact-us-submit">Contact Us</Button>
             <Navbar className="navbar-1 footer-icon-wrapper">
                 {/* <Navbar.Brand href="/" className="paddingL0"><i className="fa fa-envelope-o"><span>abc@ctginfotech.com</span></i></Navbar.Brand>
                 <Navbar.Brand href="/"><i className="fa fa-phone"><span>+11 1-111-111-111</span></i></Navbar.Brand> */}
@@ -18,7 +18,7 @@ function Footer() {
                     <Nav>
                         <Nav.Link href="/"><i className="fa fa-facebook"></i></Nav.Link>
                         <Nav.Link href="/"><i className="fa fa-twitter"></i></Nav.Link>
-                        <Nav.Link href="/"><i className="fa fa-linkedin"></i></Nav.Link>
+                        <Nav.Link href="https://www.linkedin.com/in/ctg-infotech-13a184189/" ><i className="fa fa-linkedin"></i></Nav.Link>
                         <Nav.Link href="/"><i className="fa fa-youtube-play"></i></Nav.Link>
 
                     </Nav>
@@ -26,7 +26,7 @@ function Footer() {
             </Navbar>
             <Card className="footer-copyright">
                 <Card.Body>
-                    Copyright @2020 somecontent goes here
+                    Copyright @2021 CTG Infotech Ltd
                     </Card.Body>
             </Card>
                
