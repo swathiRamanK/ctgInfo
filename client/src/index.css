@@ -17,7 +17,7 @@ body,span,div,a,i{
   font-family: 'Spinnaker', sans-serif;
 }
 .margin15{
-  margin: 15px;
+  margin: 15px !important;
 }
 button:hover,button:active,button:focus{
   color: #fff!important;
@@ -58,6 +58,9 @@ button:hover,button:active,button:focus{
 }
 .width-100{
   width: 100%;
+}
+.padding0{
+  padding:0px !important;
 }
 /* header styles*/
 .logo-header{
@@ -142,7 +145,7 @@ padding: 0px 4px;
 
 /* Home page*/
 .Home{
-  height:1250px;
+  height:1400px;
 }
 .image-text{
   position: absolute;
@@ -202,7 +205,23 @@ color: #10375c;
 .homepage-aboutus-body .card-heading,.homepage-aboutus-body .card-content{
   margin: 12px 0px;
 }
-
+.homepage-statistics .card{
+  text-align: center;
+  border: none;
+}
+.homepage-statistics .stat-number{
+  color: #fff;
+  font-weight: bold;
+  font-size: 34px;
+  /* width: 50%; */
+  border-radius: 50%;
+  background: #10375c;
+  margin: 5% 35%;
+  padding: 10px 10px;
+}
+.homepage-statistics .stat-text{
+  font-weight: 600;
+}
 /* meet the team page*/
 .meet-the-team{
   height: 900px;
@@ -228,28 +247,40 @@ color: #10375c;
     font-weight: 600;
     color: #fff;
 }
-.meet-the-team .card-text{
-  position: absolute;
-  bottom: 0px;
-  padding: 20px 0px;
+.meet-the-team .bodyCard p{
+  font-weight: normal;
+}
+.meet-the-team .titleCard{
   width: 100%;
-  background: #10375c;
-  color: var(--white);
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    background: #10375c;
+    padding: 20px 0px;
+    color: #fff;
+    font-weight: bold;
+}
+.meet-the-team .card-text{
+  bottom: 0px;
+  padding: 20px 10px;
+  width: 100%;
+  background: #fff;
+  color: #10375c;
   font-weight: bold;
   font-size: 18px;
+  height: 380px;
 }
 .meet-the-team .card-img-overlay{
   padding: 0px;
   width: 100%;
 }
 .meet-the-team i{
-  position: absolute;
+ /* position: absolute;*/
   left: 16px;
   bottom: 40px;
-  font-size: 35px;
+  font-size: 30px;
   padding: 8px;
-  background: var(--white);
-  color: #10375c;
+  color: var(--white);
 }
 /*Contact US*/
 .contact-us{

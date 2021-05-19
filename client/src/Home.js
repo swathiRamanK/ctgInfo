@@ -67,6 +67,32 @@ function Home() {
           </Card.Body>
         </Card>
       </CardDeck>
+      <CardDeck className="homepage-statistics margin15">
+        <Card>
+          <Card.Body>
+            <p className="stat-number">5+</p>
+            <p className="stat-text">Customers Across the Globe</p>
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Body>
+          <p className="stat-number">7+</p>
+            <p className="stat-text">Engagements Executed Successfully</p>
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Body>
+          <p className="stat-number">3+</p>
+            <p className="stat-text">Years of Consulting Experience</p>
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Body>
+          <p className="stat-number">3</p>
+            <p className="stat-text">Strategic Partners with academia and Technology</p>
+          </Card.Body>
+        </Card>
+      </CardDeck>
     </div>
 
   );
