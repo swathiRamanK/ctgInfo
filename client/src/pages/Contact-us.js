@@ -1,18 +1,57 @@
 import React , { Component } from 'react'
 import placeholder from '../images/placeholder.jpg';
-import * as emailjs from 'emailjs-com'
-import { CardDeck, Card, Button, Image, FormFeedback, Form, FormGroup, Label } from 'react-bootstrap';
+import * as emailjs from 'emailjs-com';
+import { CardDeck, Card, Button, Image, FormFeedback, Form, FormGroup,FormControl,FormLabel, Label } from 'react-bootstrap';
+import axios from 'axios';
 
 class ContactUs extends Component  {
 
-    state = {
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
+    
+      constructor(props){
+        super(props)
+        this.state = { email:'',name:'',  subject:'',message:'',show:false,successMsg:false,errorMessage:false}
+        // this.state = {
+        //     name: '',
+        //     email: '',
+        //     subject: '',
+        //     message: '',
+        //   }
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+      }
+    //   handleSubmit(event){
+    //     const { email, name, subject, message } = this.state
+    //     event.preventDefault()
+    //     alert(`
+    //       ____Your Details____\n
+    //       Email : ${email}
+    //       Name : ${name}
+    //       Subject : ${subject}
+    //       Message : ${message}
+    //     `)
+    //   }
+      handleChange(event){
+        this.setState({
+          // Computed property names
+          // keys of the objects are computed dynamically
+          [event.target.name] : event.target.value
+        })
+      }
+      componentDidMount() {
+
+        axios.get('https://reqres.in/api/products/3')
+        .then(response => 
+            {console.log('response',response);}
+            
+            )
+        .catch(error => {
+         
+            console.error('There was an error!', error);
+        });
       }
     handleSubmit(e) {
-        e.preventDefault()
+        console.log('e',e)
+       e.preventDefault()
         const { name, email, subject, message } = this.state
         
         let templateParams = {
@@ -21,12 +60,26 @@ class ContactUs extends Component  {
             subject: subject,
             message_html: message,
         }
-        emailjs.send(
+        
+        if(this.state.name !== null && this.state.name !== null &&
+            this.state.email !== null && this.state.email !== null &&
+            this.state.subject !== null && this.state.subject !== null && 
+            this.state.message !== null && this.state.message !== null  && isNaN(this.state.name)){
+         emailjs.send(
             'service_rjeesvz',
-            'template_tl3l77n',
+            'template_qzjo0rl',
              templateParams,
             'user_PGryMcHBAX8mkNJ8YcWej'
-        )
+        ).then(res=>{
+            if(res.status === 200){
+                this.setState({successMsg:true})
+            }
+        }).catch(error => {
+            this.setState({errorMsg:true})
+        });
+        }else{
+            this.setState({show:true})
+         }
         this.resetForm();
     }
     resetForm() {
@@ -37,64 +90,74 @@ class ContactUs extends Component  {
             message: '',
         })
     }
-    handleChange = (param, e) => {
-        this.setState({ [param]: e.target.value })
-      }
+    // handleChange = (param, e) => {
+    //     this.setState({ [param]: e.target.value })
+    //   }
+     
     render() {
     return (
 
+        
         <div className="contact-us">
             <h3 className="heading">GET IN TOUCH WITH US</h3>
-            
+            {this.state.show && <span className="error-msg">*Please Enter valid Input</span>}
+            {this.state.successMsg && <span className="success-msg">Email Submitted Successfully!</span>}
+            {this.state.errorMsg && <span className="error-msg">Error! Email not Sent</span>}
             <CardDeck>
                 <Card>
-                    <Form onSubmit={this.handleSubmit.bind(this)}>
-                        <Form.Group>
-                            <Form.Label>
+                    <form onSubmit={this.handleSubmit}>
+                        <FormGroup>
+                            <FormLabel>
                                 Name
-                            </Form.Label>
-                            <Form.Control type="text"
+                            </FormLabel>
+                            <FormControl type="text"
                 name="name"
                 value={this.state.name}
-                className="text-primary"
-                onChange={this.handleChange.bind(this, 'name')}
-                placeholder="Name"></Form.Control>
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>
+                className="text-primary color-black"
+                onChange={this.handleChange}
+                placeholder="Name"
+                maxLength="50"></FormControl>
+                        </FormGroup>
+                        <FormGroup>
+                            <FormLabel>
                                 Email
-                            </Form.Label>
-                            <Form.Control type="email"
+                            </FormLabel>
+                            <FormControl type="email"
                 name="email"
                 value={this.state.email}
-                className="text-primary"
-                onChange={this.handleChange.bind(this, 'email')}
-                placeholder="Enter email"></Form.Control>
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>
+                className="text-primary color-black"
+                onChange={this.handleChange}
+                placeholder="Enter email"></FormControl>
+                        </FormGroup>
+                        <FormGroup>
+                            <FormLabel>
                                 Subject
-                            </Form.Label>
-                            <Form.Control type="text"
+                            </FormLabel>
+                            <FormControl type="text"
                 name="subject"
-                className="text-primary"
+                className="text-primary color-black"
                 value={this.state.subject}
-                onChange={this.handleChange.bind(this, 'subject')}
-                placeholder="Subject"></Form.Control>
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>
+                onChange={this.handleChange}
+                placeholder="Subject"
+                maxLength="50"></FormControl>
+                        </FormGroup>
+                        <FormGroup>
+                            <FormLabel>
                                 Message
-                            </Form.Label>
-                            <Form.Control type="textarea"
+                            </FormLabel>
+                            <FormControl type="textarea"
                 name="message"
-                className="text-primary"
+                className="text-primary color-black"
                 value={this.state.message}
-                onChange={this.handleChange.bind(this, 'message')}></Form.Control>
-                        </Form.Group>
-                        <Button className="ctg-btn-primary" variant="primary">Submit</Button>
+                onChange={this.handleChange}
+                placeholder="Message"
+                maxLength="100"></FormControl>
+               
+                        </FormGroup>
+                        <Button type="submit" className="ctg-btn-primary" variant="primary">Submit</Button>
+                        
 
-                    </Form>
+                    </form>
 
                 </Card>
                 <Card>

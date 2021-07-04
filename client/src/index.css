@@ -62,6 +62,9 @@ button:hover,button:active,button:focus{
 .padding0{
   padding:0px !important;
 }
+.color-black{
+  color:var(--black) ;
+}
 /* header styles*/
 .logo-header{
   width: 125px;
@@ -283,6 +286,16 @@ color: #10375c;
   color: var(--white);
 }
 /*Contact US*/
+.error-msg{
+  margin: 15px;
+  color: red;
+  font-weight: bold;
+}
+.success-msg{
+  margin: 15px;
+  color: green;
+  font-weight: bold;
+}
 .contact-us{
   height: 600px;
 }
