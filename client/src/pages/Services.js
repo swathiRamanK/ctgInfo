@@ -15,7 +15,7 @@ function Services() {
                         <h4>Network Support & Maintenance</h4>
                         <p>We can set up and maintain your business's network,
                            or help troubleshoot and maintain your existing network. </p>
-                        <Button className="ctg-btn-primary" variant="primary">View More</Button>
+                        {/* <Button className="ctg-btn-primary" variant="primary">View More</Button> */}
                     </Card.Body>
                 </Card>
                 <Card>
@@ -25,7 +25,7 @@ function Services() {
                         <p>We are available to consult with your or your staff
                         when problems arise with your software.
                            This service can be either remote </p>
-                        <Button className="ctg-btn-primary" variant="primary">View More</Button>
+                        {/* <Button className="ctg-btn-primary" variant="primary">View More</Button> */}
 
                     </Card.Body>
                 </Card>
@@ -35,7 +35,7 @@ function Services() {
                         <h4>Cloud Services & Data Management</h4>
                         <p>We will work with you to establish the appropriate cloud
                            size and available resources for your business.</p>
-                        <Button className="ctg-btn-primary" variant="primary">View More</Button>
+                        {/* <Button className="ctg-btn-primary" variant="primary">View More</Button> */}
 
                     </Card.Body>
                 </Card>

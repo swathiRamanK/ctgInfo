@@ -148,7 +148,7 @@ padding: 0px 4px;
 
 /* Home page*/
 .Home{
-  height:1400px;
+  height:1550px;
 }
 .image-text{
   position: absolute;
@@ -231,7 +231,7 @@ color: #10375c;
 }
 .meet-the-team img{
   height: 300px;
-    width: 419.7px;
+    /* width: 419.7px; */
     opacity: 0.9;
 }
 .meet-the-team .card-deck{
